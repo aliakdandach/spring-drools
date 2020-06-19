@@ -1,0 +1,35 @@
+package KieRule;
+import com.example.drools.model.Card;
+
+rule "MONTHLY PREPAID"
+
+when
+requestObject : Card(type == "PREPAID_MONTHLY");
+then
+requestObject.setMaxLoading(10);
+end;
+
+rule "WEEKLY PREPAID"
+
+when
+requestObject : Card(type == "PREPAID_WEEKLY");
+then
+requestObject.setMaxLoading(20);
+end;
+
+rule "YEARLY PREPAID"
+
+when
+requestObject : Card(type == "PREPAID_YEARLY");
+then
+requestObject.setMaxLoading(30);
+end;
+
+rule "CREDIT"
+
+when
+requestObject : Card(type == "CREDIT");
+then
+requestObject.setFees(10);
+requestObject.setLimits(1000);
+end;
